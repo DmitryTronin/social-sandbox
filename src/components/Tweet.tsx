@@ -15,31 +15,30 @@ export const Tweet: React.FC<TweetProps> = ({
   onReply,
 }) => {
   return (
-    <article className="tweet">
-      <div className="tweet-header">
-        <img
-          src={tweet.author.avatarUrl}
-          alt={tweet.author.name}
-          className="avatar"
-        />
-        <div className="author-info">
-          <span className="name">{tweet.author.name}</span>
-          <span className="handle">@{tweet.author.handle}</span>
+    <article className="tweet" style={{ display: 'flex', gap: 12, padding: '12px 16px', borderBottom: '1px solid #e1e8ed' }}>
+      <img
+        src={tweet.author.avatarUrl}
+        alt={tweet.author.name}
+        style={{ width: 48, height: 48, borderRadius: '50%', flexShrink: 0, backgroundColor: '#f0f0f0' }}
+      />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="tweet-header" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span className="name" style={{ fontWeight: 700 }}>{tweet.author.name}</span>
+          <span className="handle" style={{ color: '#536471' }}>@{tweet.author.handle}</span>
+        </div>
+        <p className="tweet-text" style={{ margin: '4px 0 8px' }}>{tweet.text}</p>
+        <div className="tweet-actions" style={{ display: 'flex', gap: 24 }}>
+          <button onClick={() => onReply?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
+            Reply ({tweet.replies})
+          </button>
+          <button onClick={() => onRetweet?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
+            Retweet ({tweet.retweets})
+          </button>
+          <button onClick={() => onLike?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
+            Like ({tweet.likes})
+          </button>
         </div>
       </div>
-      <p className="tweet-text">{tweet.text}</p>
-      <div className="tweet-actions">
-        <button onClick={() => onReply?.(tweet.id)}>
-          Reply ({tweet.replies})
-        </button>
-        <button onClick={() => onRetweet?.(tweet.id)}>
-          Retweet ({tweet.retweets})
-        </button>
-        <button onClick={() => onLike?.(tweet.id)}>
-          Like ({tweet.likes})
-        </button>
-      </div>
-      <time className="timestamp">{tweet.createdAt}</time>
     </article>
   );
 };
