@@ -1,4 +1,6 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Tweet } from './components/Tweet';
+import { Contact } from './pages/Contact';
 import type { TweetData } from '@/types/tweet';
 
 const sampleTweets: TweetData[] = [
@@ -49,14 +51,28 @@ const sampleTweets: TweetData[] = [
   },
 ];
 
-function App() {
+function Home() {
   return (
     <div className="app">
       <h1>Tweet Viewer</h1>
+      <nav>
+        <Link to="/contact">Contact</Link>
+      </nav>
       {sampleTweets.map((tweet) => (
         <Tweet key={tweet.id} tweet={tweet} />
       ))}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
