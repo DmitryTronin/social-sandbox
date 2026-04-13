@@ -8,6 +8,20 @@ interface TweetProps {
   onReply?: (id: string) => void;
 }
 
+const EXTERNAL_URL_PATTERN = /^(?:[a-z][a-z\d+\-.]*:)?\/\//i;
+
+function resolveAvatarUrl(avatarUrl: string): string {
+  if (
+    EXTERNAL_URL_PATTERN.test(avatarUrl) ||
+    avatarUrl.startsWith('data:') ||
+    avatarUrl.startsWith('blob:')
+  ) {
+    return avatarUrl;
+  }
+
+  return `${import.meta.env.BASE_URL}${avatarUrl.replace(/^\/+/, '')}`;
+}
+
 export const Tweet: React.FC<TweetProps> = ({
   tweet,
   onLike,
@@ -17,7 +31,7 @@ export const Tweet: React.FC<TweetProps> = ({
   return (
     <article className="tweet" style={{ display: 'flex', gap: 12, padding: '12px 16px', borderBottom: '1px solid #e1e8ed' }}>
       <img
-        src={tweet.author.avatarUrl}
+        src={resolveAvatarUrl(tweet.author.avatarUrl)}
         alt={tweet.author.name}
         style={{ width: 48, height: 48, borderRadius: '50%', flexShrink: 0, backgroundColor: '#f0f0f0' }}
       />
