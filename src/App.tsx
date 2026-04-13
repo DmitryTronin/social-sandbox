@@ -1,4 +1,5 @@
 import { Tweet } from './components/Tweet';
+import { WhatsNew } from './components/WhatsNew';
 import type { TweetData } from '@/types/tweet';
 
 const sampleTweets: TweetData[] = [
@@ -56,6 +57,7 @@ function App() {
       {sampleTweets.map((tweet) => (
         <Tweet key={tweet.id} tweet={tweet} />
       ))}
+      <WhatsNew />
     </div>
   );
 }
