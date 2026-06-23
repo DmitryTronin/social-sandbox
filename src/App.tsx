@@ -3,7 +3,7 @@ import type { TweetData } from '@/types/tweet';
 
 const sampleTweets: TweetData[] = [
   {
-    id: '1',
+    id: '001',
     text: 'Hello world! This is a sample tweet.',
     author: { name: 'John Doe', handle: 'johndoe', avatarUrl: '/avatars/avatar-1.svg' },
     createdAt: '2024-01-15T10:30:00Z',
@@ -12,7 +12,7 @@ const sampleTweets: TweetData[] = [
     replies: 5,
   },
   {
-    id: '2',
+    id: '002',
     text: 'Just shipped a new feature! Feeling great about the team effort.',
     author: { name: 'Jane Smith', handle: 'janesmith', avatarUrl: '/avatars/avatar-2.svg' },
     createdAt: '2024-01-15T11:00:00Z',
@@ -21,7 +21,7 @@ const sampleTweets: TweetData[] = [
     replies: 12,
   },
   {
-    id: '3',
+    id: '003',
     text: 'React + TypeScript is such a powerful combo. Love the type safety!',
     author: { name: 'Alex Chen', handle: 'alexcodes', avatarUrl: '/avatars/avatar-3.svg' },
     createdAt: '2024-01-15T12:15:00Z',
@@ -30,7 +30,7 @@ const sampleTweets: TweetData[] = [
     replies: 7,
   },
   {
-    id: '4',
+    id: '004',
     text: 'Hot take: tabs > spaces. Fight me.',
     author: { name: 'Sam Rivera', handle: 'samdev', avatarUrl: '/avatars/avatar-4.svg' },
     createdAt: '2024-01-15T13:45:00Z',
@@ -39,7 +39,7 @@ const sampleTweets: TweetData[] = [
     replies: 43,
   },
   {
-    id: '5',
+    id: '005',
     text: 'Morning coffee + code review = perfect start to the day.',
     author: { name: 'Morgan Lee', handle: 'morganlee', avatarUrl: '/avatars/avatar-5.svg' },
     createdAt: '2024-01-16T08:00:00Z',
