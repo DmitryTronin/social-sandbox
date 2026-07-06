@@ -58,6 +58,13 @@ describe('Tweet', () => {
     expect(onLike).toHaveBeenCalledWith('tweet-1');
   });
 
+  it('shows active state when liked and retweeted by me', () => {
+    render(<Tweet tweet={{ ...tweet, likedByMe: true, retweetedByMe: true }} />);
+
+    expect(screen.getByRole('button', { name: 'Liked (42)' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Retweeted (10)' })).toHaveAttribute('aria-pressed', 'true');
+  });
+
   it('does not require action handlers', async () => {
     const user = userEvent.setup();
 

@@ -31,11 +31,31 @@ export const Tweet: React.FC<TweetProps> = ({
           <button onClick={() => onReply?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
             Reply ({tweet.replies})
           </button>
-          <button onClick={() => onRetweet?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
-            Retweet ({tweet.retweets})
+          <button
+            onClick={() => onRetweet?.(tweet.id)}
+            aria-pressed={!!tweet.retweetedByMe}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: tweet.retweetedByMe ? '#00ba7c' : '#536471',
+              fontWeight: tweet.retweetedByMe ? 700 : 400,
+              cursor: 'pointer',
+            }}
+          >
+            {tweet.retweetedByMe ? 'Retweeted' : 'Retweet'} ({tweet.retweets})
           </button>
-          <button onClick={() => onLike?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
-            Like ({tweet.likes})
+          <button
+            onClick={() => onLike?.(tweet.id)}
+            aria-pressed={!!tweet.likedByMe}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: tweet.likedByMe ? '#f91880' : '#536471',
+              fontWeight: tweet.likedByMe ? 700 : 400,
+              cursor: 'pointer',
+            }}
+          >
+            {tweet.likedByMe ? 'Liked' : 'Like'} ({tweet.likes})
           </button>
         </div>
       </div>
