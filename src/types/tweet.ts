@@ -10,4 +10,6 @@ export interface TweetData {
   likes: number;
   retweets: number;
   replies: number;
+  likedByMe?: boolean;
+  retweetedByMe?: boolean;
 }
