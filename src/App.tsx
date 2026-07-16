@@ -82,16 +82,55 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Tweet Viewer</h1>
-      {tweets.map((tweet) => (
-        <Tweet
-          key={tweet.id}
-          tweet={tweet}
-          onLike={toggleLike}
-          onRetweet={toggleRetweet}
-        />
-      ))}
+    <div className="app-shell">
+      <aside className="sidebar" aria-label="Primary navigation">
+        <div className="brand-mark" aria-hidden="true">✦</div>
+        <nav className="nav-links">
+          <a className="nav-link nav-link-active" href="#feed" aria-current="page">
+            <span aria-hidden="true">⌂</span> Home
+          </a>
+          <a className="nav-link" href="#explore"><span aria-hidden="true">⌕</span> Explore</a>
+          <a className="nav-link" href="#notifications"><span aria-hidden="true">♡</span> Notifications</a>
+          <a className="nav-link" href="#bookmarks"><span aria-hidden="true">▱</span> Bookmarks</a>
+        </nav>
+        <div className="sidebar-profile">
+          <img src="/avatars/avatar-6.svg" alt="Your profile" />
+          <div><strong>Alex Morgan</strong><span>@alexmorgan</span></div>
+          <span className="more" aria-hidden="true">•••</span>
+        </div>
+      </aside>
+
+      <main className="feed" id="feed">
+        <header className="feed-header">
+          <div>
+            <p className="eyebrow">Your daily dose of ideas</p>
+            <h1>Tweet Viewer</h1>
+          </div>
+          <button className="compose-button" type="button">Compose <span aria-hidden="true">↗</span></button>
+        </header>
+        <div className="feed-tabs" role="tablist" aria-label="Feed filters">
+          <button className="feed-tab feed-tab-active" role="tab" aria-selected="true">For you</button>
+          <button className="feed-tab" role="tab" aria-selected="false">Following</button>
+        </div>
+        <section aria-label="Tweets">
+          {tweets.map((tweet) => (
+            <Tweet key={tweet.id} tweet={tweet} onLike={toggleLike} onRetweet={toggleRetweet} />
+          ))}
+        </section>
+      </main>
+
+      <aside className="right-rail" aria-label="Discover">
+        <div className="search-box"><span aria-hidden="true">⌕</span><input aria-label="Search" placeholder="Search" /></div>
+        <section className="rail-card">
+          <p className="eyebrow">Trending now</p>
+          <h2>What’s happening</h2>
+          <div className="trend"><span>Technology · Trending</span><strong>React</strong><small>18.2K posts</small></div>
+          <div className="trend"><span>Design · Trending</span><strong>Quiet interfaces</strong><small>4,891 posts</small></div>
+          <div className="trend"><span>Culture · Trending</span><strong>Slow mornings</strong><small>2,104 posts</small></div>
+          <a className="show-more" href="#trends">Show more</a>
+        </section>
+        <p className="footer-note">Made for thoughtful conversations<br />© 2024 Social Sandbox</p>
+      </aside>
     </div>
   );
 }

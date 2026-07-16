@@ -15,46 +15,40 @@ export const Tweet: React.FC<TweetProps> = ({
   onReply,
 }) => {
   return (
-    <article className="tweet" style={{ display: 'flex', gap: 12, padding: '12px 16px', borderBottom: '1px solid #e1e8ed' }}>
+    <article className="tweet">
       <img
         src={tweet.author.avatarUrl}
         alt={tweet.author.name}
-        style={{ width: 48, height: 48, borderRadius: '50%', flexShrink: 0, backgroundColor: '#f0f0f0' }}
+        className="avatar"
       />
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="tweet-header" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span className="name" style={{ fontWeight: 700 }}>{tweet.author.name}</span>
-          <span className="handle" style={{ color: '#536471' }}>@{tweet.author.handle}</span>
+      <div className="tweet-content">
+        <div className="tweet-header">
+          <span className="name">{tweet.author.name}</span>
+          <span className="handle">@{tweet.author.handle}</span>
+          <span className="dot" aria-hidden="true">·</span>
+          <time dateTime={tweet.createdAt}>Jan 15</time>
+          <button className="tweet-more" type="button" aria-label="More options">•••</button>
         </div>
-        <p className="tweet-text" style={{ margin: '4px 0 8px' }}>{tweet.text}</p>
-        <div className="tweet-actions" style={{ display: 'flex', gap: 24 }}>
-          <button onClick={() => onReply?.(tweet.id)} style={{ background: 'none', border: 'none', color: '#536471', cursor: 'pointer' }}>
+        <p className="tweet-text">{tweet.text}</p>
+        <div className="tweet-actions">
+          <button onClick={() => onReply?.(tweet.id)}>
+            <span aria-hidden="true">◌</span>
             Reply ({tweet.replies})
           </button>
           <button
             onClick={() => onRetweet?.(tweet.id)}
             aria-pressed={!!tweet.retweetedByMe}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: tweet.retweetedByMe ? '#00ba7c' : '#536471',
-              fontWeight: tweet.retweetedByMe ? 700 : 400,
-              cursor: 'pointer',
-            }}
+            className={tweet.retweetedByMe ? 'action-retweeted' : ''}
           >
+            <span aria-hidden="true">↻</span>
             {tweet.retweetedByMe ? 'Retweeted' : 'Retweet'} ({tweet.retweets})
           </button>
           <button
             onClick={() => onLike?.(tweet.id)}
             aria-pressed={!!tweet.likedByMe}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: tweet.likedByMe ? '#f91880' : '#536471',
-              fontWeight: tweet.likedByMe ? 700 : 400,
-              cursor: 'pointer',
-            }}
+            className={tweet.likedByMe ? 'action-liked' : ''}
           >
+            <span aria-hidden="true">♡</span>
             {tweet.likedByMe ? 'Liked' : 'Like'} ({tweet.likes})
           </button>
         </div>
