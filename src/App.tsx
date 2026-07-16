@@ -82,17 +82,36 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Tweet Viewer</h1>
-      {tweets.map((tweet) => (
-        <Tweet
-          key={tweet.id}
-          tweet={tweet}
-          onLike={toggleLike}
-          onRetweet={toggleRetweet}
-        />
-      ))}
-    </div>
+    <main className="app-shell">
+      <section className="feed" aria-label="Tweet Viewer">
+        <header className="feed-header">
+          <div>
+            <p className="eyebrow">Your timeline</p>
+            <h1>Tweet Viewer</h1>
+          </div>
+          <button className="compose-button" type="button" aria-label="Create a new post">
+            <span aria-hidden="true">+</span>
+            Post
+          </button>
+        </header>
+
+        <div className="feed-intro">
+          <div className="intro-icon" aria-hidden="true">✦</div>
+          <p>Fresh ideas from people you follow.</p>
+        </div>
+
+        <div className="tweet-list">
+          {tweets.map((tweet) => (
+            <Tweet
+              key={tweet.id}
+              tweet={tweet}
+              onLike={toggleLike}
+              onRetweet={toggleRetweet}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
 
