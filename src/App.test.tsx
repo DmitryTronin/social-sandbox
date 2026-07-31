@@ -11,6 +11,20 @@ describe('App', () => {
     expect(screen.getAllByRole('article').length).toBeGreaterThan(0);
   });
 
+  it('mounts the app through the browser entry point', async () => {
+    const root = document.createElement('div');
+    root.id = 'root';
+    document.body.appendChild(root);
+
+    try {
+      await import('./main');
+
+      expect(await screen.findByRole('heading', { name: 'Tweet Viewer' })).toBeInTheDocument();
+    } finally {
+      root.remove();
+    }
+  });
+
   it('toggles a like on and off with live counts', async () => {
     const user = userEvent.setup();
     render(<App />);
