@@ -1,3 +1,4 @@
 - [ ] Teach the moon to file its own expense reports.
 - [ ] Negotiate a peace treaty between socks and sandals.
 - [ ] Replace gravity with a more collaborative alternative.
+- [ ] Learn the choreography to a 1980s aerobics video.
