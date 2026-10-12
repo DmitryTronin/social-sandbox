@@ -5,6 +5,23 @@ import { sampleTweets } from '@/data/tweets';
 function App() {
   const [tweets, setTweets] = useState(sampleTweets);
 
+  const addRandomTweet = () => {
+    const authors = sampleTweets.map((tweet) => tweet.author);
+    const author = authors[Math.floor(Math.random() * authors.length)];
+
+    const newTweet = {
+      id: `tweet-${Date.now()}`,
+      text: 'Just shared a fresh thought with the timeline.',
+      author,
+      createdAt: new Date().toISOString(),
+      likes: 0,
+      retweets: 0,
+      replies: 0,
+    };
+
+    setTweets((prev) => [newTweet, ...prev]);
+  };
+
   const toggleLike = (id: string) => {
     setTweets((prev) =>
       prev.map((tweet) =>
@@ -36,6 +53,13 @@ function App() {
   return (
     <div className="app">
       <h1>Tweet Viewer</h1>
+      <button
+        type="button"
+        onClick={addRandomTweet}
+        style={{ marginBottom: 12, padding: '8px 14px', cursor: 'pointer' }}
+      >
+        Add random tweet
+      </button>
       {tweets.map((tweet) => (
         <Tweet
           key={tweet.id}

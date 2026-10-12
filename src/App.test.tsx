@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import App from './App';
 
 describe('App', () => {
@@ -55,5 +55,21 @@ describe('App', () => {
 
     expect(screen.getByRole('button', { name: 'Like (128)' })).toBeInTheDocument();
     expect(screen.getAllByRole('button', { name: /^Liked/ })).toHaveLength(1);
+  });
+
+  it('adds a new tweet for a randomly selected user', async () => {
+    const user = userEvent.setup();
+    vi.spyOn(Math, 'random').mockReturnValue(0.8);
+
+    render(<App />);
+
+    await user.click(screen.getByRole('button', { name: 'Add random tweet' }));
+
+    expect(screen.getAllByRole('article')).toHaveLength(6);
+    expect(screen.getByText('Just shared a fresh thought with the timeline.')).toBeInTheDocument();
+    expect(screen.getAllByText('@morganlee')).toHaveLength(2);
+    expect(screen.getByRole('button', { name: 'Like (0)' })).toBeInTheDocument();
+
+    vi.restoreAllMocks();
   });
 });
